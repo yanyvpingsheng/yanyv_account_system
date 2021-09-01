@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>烟雨用户系统-登录</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        html, body, .container {
+            margin: 0 auto;
+            height: 100%;
+        }
+
+        .container {
+            min-width: 80%;
+        }
+
+        video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -9999;
+        }
+
+        .main {
+            margin-top: 50px;
+            min-height: 100%;
+            height: 100%;
+        }
+
+        .right-pane {
+            height: 85%;
+        }
+
+        .tabbable {
+            height: 100%;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 25px;
+        }
+
+        .tab-content {
+            margin-top: 10px;
+        }
+
+        .checkbox span {
+            color: #bbb;
+            margin-left: 10px;
+        }
+
+        .checkbox label {
+            min-height: 14px;
+            padding-left: 14px;
+            vertical-align: middle;
+        }
+
+        .remember-check input {
+            display: none;
+        }
+
+        .remember-check {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0i5Zu+5bGCXzEiIGRhdGEtbmFtZT0i5Zu+5bGCIDEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDE2IDE2Ij48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2NjZDBkNzt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPjE2X2ljb19jaGVja2JveDwvdGl0bGU+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTMuNSwxNkgyLjVBMi41LDIuNSwwLDAsMSwwLDEzLjVWMi41QTIuNSwyLjUsMCwwLDEsMi41LDBoMTFBMi41LDIuNSwwLDAsMSwxNiwyLjV2MTFBMi41LDIuNSwwLDAsMSwxMy41LDE2Wk0yLjUsMUExLjUsMS41LDAsMCwwLDEsMi41djExQTEuNSwxLjUsMCwwLDAsMi41LDE1aDExQTEuNSwxLjUsMCwwLDAsMTUsMTMuNVYyLjVBMS41LDEuNSwwLDAsMCwxMy41LDFaIi8+PC9zdmc+");
+        }
+
+        .remember-check.active {
+            background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0i5Zu+5bGCXzEiIGRhdGEtbmFtZT0i5Zu+5bGCIDEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDE2IDE2Ij48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzAwYTFkNjt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPjE2X2ljb19jaGVja2JveF9zZWxlY3RlZDwvdGl0bGU+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNiw5LjUsNC44LDguM0ExLjA2LDEuMDYsMCwwLDAsMy4zLDkuOGwxLjksMS45QTEuMDYsMS4wNiwwLDAsMCw2LDEyYTEuMDYsMS4wNiwwLDAsMCwuOC0uM2w1LjktNS45YTEuMDYsMS4wNiwwLDAsMC0xLjUtMS41Wk0yLDBIMTRhMiwyLDAsMCwxLDIsMlYxNGEyLDIsMCwwLDEtMiwySDJhMiwyLDAsMCwxLTItMlYyQTIsMiwwLDAsMSwyLDBaIi8+PC9zdmc+");
+        }
+
+        .form-group .btn {
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body>
+<div id="app" class="container">
+    <video autoplay muted loop>
+        <source :src="videoPath">
+        你的浏览器不支持视频标签
+    </video>
+    <div class="main row clearfix">
+        <div class="col-md-8 column">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1"><span
+                            class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
+                            class="icon-bar"></span><span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="#">Brand</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="#">Link</a>
+                        </li>
+                        <li>
+                            <a href="#">Link</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong
+                                    class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">Action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Another action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Something else here</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">Separated link</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">One more separated link</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control"/>
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#">Link</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong
+                                    class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">Action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Another action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Something else here</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">Separated link</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="right-pane col-md-4 column">
+            <div class="tabbable">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#panel-737307" data-toggle="tab">登录</a>
+                    </li>
+                    <li>
+                        <a href="#panel-741733" data-toggle="tab">注册</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="panel-737307">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input type="email" class="form-control" v-model="email" placeholder="邮箱"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input type="password" class="form-control" v-model="password" placeholder="密码"/>
+                                </div>
+                            </div>
+                            <div v-show="needPictureCode" class="form-group">
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" v-model="pictureCode" placeholder="验证码"/>
+                                </div>
+                                <div class="col-sm-4">
+                                    <img name="picture-code" class="img-responsive" :src="pictureCodePath"
+                                         @click="resetCode" alt="验证码加载失败" title="点击刷新">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <label class="remember-check" :class="{active:remember}">
+                                            <input id="remember" type="checkbox" v-model="remember"/>
+                                        </label>
+                                        记住我
+                                        <span>不是自己的电脑上不要勾选此项</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button type="button" @click="login" class="btn btn-default">登录</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="panel-741733">
+
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input type="email" class="form-control" v-model="email" placeholder="邮箱"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" v-model="name" placeholder="用户名"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input type="password" class="form-control" v-model="password" placeholder="密码"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input type="password" class="form-control" v-model="surePassword"
+                                           placeholder="确认密码"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" v-model="pictureCode" placeholder="验证码"/>
+                                </div>
+                                <div class="col-sm-4">
+                                    <img name="picture-code" class="img-responsive" :src="pictureCodePath"
+                                         @click="resetCode" alt="验证码加载失败" title="点击刷新">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" v-model="emailCode" placeholder="邮箱验证码"/>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="button" class="btn btn-default" :disabled="!canSendEmail"
+                                           @click="sendEmailCode" :value="sendEmailText"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button type="button" @click="register" class="btn btn-default">注册</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery 核心 JavaScript 文件 -->
+<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- vue开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<!-- qs库 用于参数传递 -->
+<script src="https://cdn.bootcss.com/qs/6.7.0/qs.min.js"></script>
+<!-- axios网络请求库 -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<!-- 自定义通知库 -->
+<script type="text/javascript" src="/account/js/BootstrapUtil.js"></script>
+<script type="text/javascript">
+    var qs = Qs;
+    var app = new Vue({
+        el: "#app",
+        data: {
+            videoPath: "https://img-baofun.zhhainiao.com/pcwallpaper_ugc/preview/2366564fa6b83158208eb3181752a8d6_preview.mp4",
+            email: "",
+            name: "",
+            password: "",
+            surePassword: "",
+            needPictureCode: false,
+            pictureCodePath: "/account/api/picture-code",
+            pictureCode: "",
+            emailCode: "",
+            remember: false,
+            canSendEmail: true,
+            emailCD: 180,
+            sendEmailText: "发送"
+        },
+        methods: {
+            resetCode: function () {
+                this.pictureCodePath = "/account/api/picture-code?" + Math.random();
+            },
+            login: function () {
+                axios.post("/account/api/login", qs.stringify({
+                    email: this.email,
+                    password: this.password,
+                    pictureCode: this.pictureCode,
+                    remember: this.remember
+                })).then(
+                    function (response) {
+                        commonUtil.show(response.data.message, response.data.code);
+                        app.resetCode();
+                        app.needPictureCode = true;
+                    }, function (err) {
+                        console.log(err);
+                    }
+                );
+            },
+            doEmailCD: function () {
+                this.sendEmailText = '重发(' + this.emailCD + 's)';
+                if (this.emailCD !== 0) {
+                    this.emailCD--;
+                    setTimeout(this.doEmailCD, 1000);
+                } else {
+                    this.emailCD = 180;
+                    this.canSendEmail = true;
+                }
+            },
+            sendEmailCode: function () {
+                axios.post("/account/api/email-code", qs.stringify({
+                    email: this.email,
+                    pictureCode: this.pictureCode
+                })).then(
+                    function (response) {
+                        commonUtil.show(response.data.message, response.data.code);
+                        app.resetCode();
+                        if (response.data.code === 200) {
+                            app.canSendEmail = false;
+                            app.doEmailCD();
+                        }
+                    }, function (err) {
+                        console.log(err);
+                    }
+                );
+            },
+            register: function () {
+                axios.post("/account/api/register", qs.stringify({
+                    email: this.email,
+                    name: this.name,
+                    password: this.password,
+                    surePassword: this.surePassword,
+                    pictureCode: this.pictureCode,
+                    emailCode: this.emailCode
+                })).then(
+                    function (response) {
+                        commonUtil.show(response.data.message, response.data.code);
+                        app.resetCode();
+                    }, function (err) {
+                        console.log(err);
+                    }
+                );
+            }
+        }
+    });
+</script>
+</body>
+</html>
